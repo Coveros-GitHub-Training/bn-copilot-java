@@ -126,15 +126,6 @@ An autonomous agent that can implement features from GitHub issues and create pu
 
 ---
 
-## Model Context Protocol (MCP)
-
-### MCP
-A protocol that allows Copilot to connect to external tools and services.
-- **Benefits**: Enhanced context, access to external data
-- **Example**: GitHub MCP for repository data
-
----
-
 ## AI Models
 
 ### GPT-4o

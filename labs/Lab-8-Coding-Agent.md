@@ -1,4 +1,4 @@
-# Exercise 9 - GitHub Copilot Cloud Agent
+# Exercise 8 - GitHub Copilot Cloud Agent
 
 #### Duration: 60 minutes
 
@@ -306,9 +306,9 @@ so that the list loads faster and is easier to navigate.
 
 ## 📝 Step 1: Assign Your First Cloud Agent Task
 
-**Objective**: Assign the recipe rating system issue you created in Lab 7 to Copilot Cloud Agent for autonomous implementation.
+**Objective**: Create a recipe rating system issue and assign it to Copilot Cloud Agent for autonomous implementation.
 
-In Lab 7, you created a well-defined GitHub issue for a **recipe rating system**. Now it's time to delegate this task to Cloud Agent and watch it work autonomously!
+You'll create a well-defined GitHub issue for a **recipe rating system**, then delegate this task to Cloud Agent and watch it work autonomously!
 
 ### Why This Feature?
 
@@ -319,16 +319,111 @@ The rating system is perfect for Cloud Agent because it:
 - ✅ Has measurable acceptance criteria
 - ✅ Is well-scoped and self-contained
 
-### Instructions:
+### Step 1.1: Create the Recipe Rating System Issue
+
+Before delegating to Cloud Agent, you need a well-structured issue describing the work.
 
 > [!NOTE]
-> **If you didn't complete Lab 7 or didn't create the issue**, you'll need to create it now. Follow the instructions in [Lab 7](./Lab-7-Model-Context-Protocol.md#-step-7-create-an-issue-for-a-future-feature)
+> Before creating the issue, ensure that you have Issues enabled in your repository:
+>   - Go to `Settings` > `General`
+>   - Scroll to the `Features` section
+>   - Check the `Issues` box (enable it)
+>   - Return to the repository (refresh if needed) before proceeding
 
-1. **Navigate to the Issue from Lab 7**:
-   - Go to your repository on GitHub.com
-   - Click the **Issues** tab
-   - Find the issue titled "Add recipe rating system with star display" that you created in Lab 7
-   - Click to open it
+1. Navigate to your repository on GitHub.com
+2. Click the **Issues** tab
+3. Click **"New issue"**
+4. Use the template below to fill in the title and description
+
+<details>
+<summary>💡 Issue Template</summary>
+
+**Title:**
+```
+Add recipe rating system with star display
+```
+
+**Description:**
+```markdown
+## User Story
+As a user, I want to rate recipes from 1-5 stars so I can share my opinion and help others find great recipes.
+
+## Requirements
+
+### Backend Changes
+- [ ] Add `averageRating` field to Recipe entity (Double, default 0.0)
+- [ ] Add `ratingCount` field to Recipe entity (Integer, default 0)
+- [ ] Create `addRating` method in RecipeService:
+  - Accepts recipeId (Long) and rating (Integer, 1-5)
+  - Validates rating is between 1-5
+  - Calculates new average: `((oldRating * oldCount) + newRating) / (oldCount + 1)`
+  - Increments ratingCount
+  - Saves updated recipe
+- [ ] Add PUT endpoint `/api/recipes/{id}/rate` in RecipeController:
+  - Request body: `{ "rating": 5 }`
+  - Returns updated recipe with new rating
+  - Returns 400 for invalid rating (not 1-5)
+  - Returns 404 if recipe doesn't exist
+
+### Frontend Changes
+- [ ] Update `index.html` to display star ratings for each recipe
+- [ ] Show visual star display (★★★★★ or ⭐ emoji) next to recipe names
+- [ ] Display average rating and count (e.g., "4.2 stars (15 ratings)")
+- [ ] Add interactive rating widget:
+  - Show 5 clickable stars for users to submit ratings
+  - Highlight stars on hover
+  - Submit rating via API on click
+  - Update displayed rating immediately after submission
+- [ ] Add "Rate this recipe" button that shows rating widget
+- [ ] Style ratings to match existing design (purple theme)
+- [ ] Make ratings mobile-responsive
+
+### Testing
+- [ ] Unit tests for RecipeService.addRating() method
+- [ ] Test valid rating updates average correctly
+- [ ] Test validation rejects ratings < 1 or > 5
+- [ ] Test edge cases (first rating, multiple ratings)
+- [ ] Controller tests for rating endpoint
+
+## Acceptance Criteria
+- [ ] Recipe entity has rating fields with proper JPA annotations
+- [ ] Service method correctly calculates average rating
+- [ ] API endpoint validates input and returns appropriate status codes
+- [ ] Stars display correctly on the recipes page
+- [ ] Users can click stars to rate recipes
+- [ ] Ratings update immediately without page refresh
+- [ ] All tests pass
+- [ ] Code follows Spring Boot coding standards
+- [ ] Mobile-responsive design
+
+## Technical Notes
+- Use @Transactional on the service method
+- Follow existing pattern from RecipeService methods
+- Use Thymeleaf or vanilla JavaScript for frontend interactivity
+- Reference existing HTML/CSS patterns in index.html
+- Style stars with CSS (color: #667eea for filled, #ddd for empty)
+
+## Examples
+
+**Example 1: First rating**
+- Current: averageRating = 0.0, ratingCount = 0
+- User rates: 5 stars
+- Result: averageRating = 5.0, ratingCount = 1
+
+**Example 2: Multiple ratings**
+- Current: averageRating = 4.5, ratingCount = 4
+- User rates: 3 stars
+- Result: averageRating = ((4.5 * 4) + 3) / 5 = 4.2, ratingCount = 5
+```
+
+</details>
+
+5. Click **"Submit new issue"** and note the issue number for the next step
+
+### Step 1.2: Assign the Issue to Cloud Agent
+
+1. **Navigate to your newly created issue**:
+   - From the **Issues** tab, open the issue titled "Add recipe rating system with star display"
 
 2. **Assign to Copilot:**
    - In the issue sidebar, under **"Assignees"**, click the dropdown and select **"Copilot"**
@@ -1236,15 +1331,11 @@ Throughout this workshop, you've learned to:
 ✅ Create custom agents for specialized, autonomous development
 ✅ Share expert knowledge across your team
 
-**Lab 7 - Model Context Protocol**
-✅ Use Model Context Protocol
-✅ Connect Copilot to your development ecosystem
-
-**Lab 8 - Copilot Spaces**
+**Lab 7 - Copilot Spaces**
 ✅ Leverage Copilot Spaces
 ✅ Maintain focused context for different work types
 
-**Lab 9 - Cloud Agent**
+**Lab 8 - Cloud Agent**
 ✅ Work with the autonomous Cloud Agent
 ✅ Delegate complete features to AI
 ✅ **Experience parallel development** - 2-3x productivity gains
@@ -1272,7 +1363,6 @@ Remember where you started? FlavorHub was a basic application. Through this work
 GitHub Copilot capabilities are evolving rapidly:
 - More powerful models with better reasoning
 - Deeper integration with development tools
-- Expanded MCP connections to more services
 - Smarter agents with better context understanding
 - Team-wide learning from collective usage
 
