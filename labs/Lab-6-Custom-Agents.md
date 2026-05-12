@@ -118,7 +118,7 @@ agent java-expert "Review the FlavorHub service classes and suggest improvements
 
 #### Using with Copilot Cloud Agent:
 
-In Lab 9, you'll learn how to delegate tasks to Copilot Cloud Agent and can select this custom agent as part of that workflow.
+In Lab 8, you'll learn how to delegate tasks to Copilot Cloud Agent and can select this custom agent as part of that workflow.
 
 ### ✅ Success Criteria
 - [ ] Java Expert agent file is created
@@ -356,8 +356,7 @@ Excellent work! You've mastered custom agents in GitHub Copilot:
 
 ## Coming up next...
 
-In the next lab, you'll explore Model Context Protocol (MCP):
-- Understand how MCP extends GitHub Copilot with external tools
-- Install and configure the GitHub MCP server
-- Use natural language queries to interact with GitHub services
-- Discover best practices and explore other MCP servers
+In the next lab, you'll explore GitHub Copilot Spaces:
+- Create dedicated AI workspaces for focused development
+- Configure custom instructions and curated context for each Space
+- Apply Spaces to real-world collaboration scenarios
